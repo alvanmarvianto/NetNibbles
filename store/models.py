@@ -1,15 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 class Customer(models.Model):
-	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-	name = models.CharField(max_length=200, null=True)
-	email = models.CharField(max_length=200)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=15, null=True)
+    email = models.EmailField(max_length=200)
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 class Product(models.Model):
 	choices_category = (

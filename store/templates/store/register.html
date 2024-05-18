@@ -1,28 +1,44 @@
+<!-- Load Static -->
 {% load static %}
+
+<!-- Bootsrap Connect -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- Load CSS -->
+<link href="{% static 'css/cssauth.css' %}" rel="stylesheet">
+
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
     <title>NetNibbles | Register</title>
 </head>
 <body>
-    <div class="container">
-        <h1><img src="{% static 'images/logo.png' %}"></h1>
-      	<h2>Create Account</h2>
-        <form action="">
-            <label for="fname">First Name:</label><br>
-            <input type="text" id="fname" name="fname"><br>
-            <label for="lname">Last Name:</label><br>
-            <input type="text" id="lname" name="lname"><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br>
-            <label for="phone">No Handphone:</label><br>
-            <input type="text" id="phone" name="phone"><br>
-            <label for="pwd">Password:</label><br>
-            <input type="password" id="pwd" name="pwd"><br>
-            <input type="submit" value="Create Account">
-        </form>
-        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
-    </div>
+    <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center">
+            <div style="background-color: #FFF1DC" class="col-4 d-flex justify-content-center full-height">
+                <div class="img-container">
+                    <img src="{% static 'images/authasset/burger.png' %}" class="img-fluid" alt="Burger Image">
+                </div>
+            </div>
+            <div class="col-6 px-5 d-flex flex-column justify-content-center full-height">
+                <div class="container-fluid">
+                    <img src="{% static 'images/logo.png' %}" class="img-fluid" style=" width: 25%">
+                    <h1>Register</h1>
+                    <br>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <br>
+                    <button type="submit" value="Login">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
+

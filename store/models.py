@@ -13,7 +13,6 @@ class Customer(models.Model):
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-
 class Product(models.Model):
 	choices_category = (
     ('Food','Food'),

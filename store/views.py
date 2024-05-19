@@ -4,7 +4,7 @@ import json
 import datetime
 from .models import * 
 from .utils import cookieCart, cartData, guestOrder
-from .forms import RegisterForm
+from .forms import RegisterForm, CheckoutForm
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -73,25 +73,26 @@ def store(request):
 	return render(request, 'store/store.html', context)
 
 
-def cart(request):
-	data = cartData(request)
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'store/cart.html', context)
-
+@login_required
 def checkout(request):
-	data = cartData(request)
-	
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
+    data = cartData(request)
 
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'store/checkout.html', context)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST, user=request.user)
+        if form.is_valid():
+            full_name = form.cleaned_data['full_name']
+            phone = form.cleaned_data['phone']
+            address = form.cleaned_data['address']
+    else:
+        form = CheckoutForm(user=request.user)
+
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'form': form}
+    return render(request, 'store/checkout.html', context)
 
 def updateItem(request):
 	data = json.loads(request.body)

@@ -35,3 +35,20 @@ class RegisterForm(forms.ModelForm):
         if commit:
             customer.save()
         return customer
+
+class CheckoutForm(forms.Form):
+    full_name = forms.CharField(max_length=200, required=True)
+    phone = forms.CharField(max_length=15, required=True)
+    address = forms.CharField(widget=forms.Textarea, required=True)
+
+    def __init__(self, *args, **kwargs):
+        # Autofill initial values for full name and phone using Customer model
+        user = kwargs.pop('user', None)
+        super(CheckoutForm, self).__init__(*args, **kwargs)
+        if user and user.is_authenticated:
+            try:
+                customer = Customer.objects.get(user=user)
+                self.fields['full_name'].initial = customer.get_full_name()
+                self.fields['phone'].initial = customer.phone
+            except Customer.DoesNotExist:
+                pass

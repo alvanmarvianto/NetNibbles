@@ -1,39 +1,65 @@
 {% extends 'main.html' %}
 {% load static %}
+
 {% block content %}
 
-<header class="py-3" style="background-color:#fef0db; font-family: 'DM Sans', sans-serif; color: black;" class="flex-shrink-0 ">
-    <div class="container px-0 pb-5">
-                    <div class="row gx-5 align-items-center">
+      <header style="background-color:#fef0db; font-family: 'DM Sans', sans-serif; color: black; z-index: 10;" class="flex-shrink-0 ">
+            <div >
+                    <div class="row mb-5 align-items-center">
                         <div class="col-xxl-5">
                             
-                            <div class="text-start" style="margin-left:80px">
-                                <h1><span class="text-gradient" style="font-size:50px; font-weight: 600; font: DM Sans;">Menu Lezat & Higenis<br>Untuk Semua<br></span></h1>
-                                <p><span style="font-family: 'DM Sans', sans-serif; color: black;">NetNibbles menghadirkan dan menjamin kelezatan kepada pelanggan tercinta semua.<br><br></span></p>
+                            <div style="padding-left:102px; text-align: left;">
+                                <h1><span style="font-size: 75px; color:#d52b1e; padding-right: 130px; font-weight: bold;">Menu Lezat & Higenis<br>Untuk Semua<br></span></h1>
+                                <p><span style="font-size: 24px; color: black; padding-right: 150px; ">NetNibbles menghadirkan dan menjamin kelezatan kepada pelanggan tercinta semua.<br><br></span></p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
                                     <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="#">Telusuri Menu ></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-7">
-                            <!-- Header profile picture-->
-                            <div style="margin-left:0px">
-                                    <img class="profile-img" src="{% static 'assets/front.png' %}" alt="Avatar" />
+                        <div class="col-xxl-7" style="margin-bottom:10rem;">
+                            <div">
+                                    <img class="menu-icon" style="padding-left: 0px; margin-right:0px;" src="{% static 'assets/menupage.png' %}" alt="Avatar" />
                             </div>
                         </div>              
-            </header>
+      </header>
             
             
             <section id="Makanan">
             <div >
-                <div class="mb-5" >
+                <div class="mb-5" style="margin-bottom:10rem;">
                 
                     <h1 class="display-5 fw-bolder mb-0"style="font-size:40px; text-align: center;"><span class="text-secondary" >Makanan</span></h1>
                 </div>
                 
+                <div class="menu-container" style="margin-bottom:10rem;">
+                    {% for menu in menu1 %}
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
+                    {% endfor %}
+                    
+              </div>
+              <section id="Minuman" >
+            <div >
+                <div class="mb-5" >
+                
+                    <h1 class="display-5 fw-bolder mb-0"style="font-size:40px; text-align: center;"><span class="text-secondary" >Minuman</span></h1>
+                </div>
+                
+                <div class="menu-container" style="margin-bottom:10rem;">
+                    {% for menu in menu2 %}
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
+                    {% endfor %}
+                    
+              </div>
+              <section id="Dessert">
+            <div >
+                <div class="mb-5" >
+                
+                    <h1 class="display-5 fw-bolder mb-0"style="font-size:40px; text-align: center;"><span class="text-secondary" >Dessert</span></h1>
+                </div>
+                
                 <div class="menu-container">
-                    {% for menu in menu %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{% static '{{ menu.images }}' %}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
+                    {% for menu in menu3 %}
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
                     {% endfor %}
                     
               </div>

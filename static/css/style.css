@@ -3912,6 +3912,10 @@ textarea.form-control-lg {
     max-height: 40px; /* Adjust size as needed */
 }
 
+.logos-foot-img {
+    max-height:86px; /* Adjust size as needed */
+}
+
 .navbar-brand span {
     margin-left: 10px; /* Adjust spacing as needed */
 }

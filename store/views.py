@@ -5,7 +5,7 @@ import datetime
 from .models import * 
 from .utils import *
 from .forms import *
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
@@ -36,6 +36,11 @@ def login(request):
 @login_required
 def success(request):
     return render(request, 'store/successfull.html')
+
+@login_required
+def logout(request):
+    auth_logout(request)
+    return redirect('login')
 
 
 def promo(request):

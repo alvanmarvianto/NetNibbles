@@ -18,13 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from menu.views import index
+from menu.views import index, tnc, aboutus, hns
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls')),
     path('menu/', index),
+    path('termsnconditions/', tnc),
+    path('aboutus/', aboutus),
+    path('helpnsupport/', hns),
     
      
 ]

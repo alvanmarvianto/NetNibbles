@@ -16,3 +16,16 @@ def index(request):
     context = { "menu1": menu1, "menu2": menu2, "menu3": menu3 }
     return render(request, template_name, context)
 
+
+
+def tnc(request):
+    template_name = 'tnc.html'
+    return render(request, template_name)
+    
+def hns(request):
+    template_name = 'contact.html'
+    return render(request, template_name)
+
+def aboutus(request):
+    template_name = 'aboutus.html'
+    return render(request, template_name)

@@ -33,24 +33,16 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms- mb-2 mb-lg-0 small fw-lighter">
-                            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#resume">Menu</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#project">Pemesanan</a></li>
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="#home">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="#resume">Menu</a></li>
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="#project">Pemesanan</a></li>
                         </ul>
                     </div>
                 </div>
                 <header class="header">
-                    <div class="search-container" >
-                    <input type="text" class="search search-box search-text search-in search-in-a search-vec" placeholder="Search...">
-                      <i class="fas fa-search search-icon"></i>
-        
-        
-                      <img class="user-icon" src="{% static 'assets/search.png' %}"></div> 
-                      
-                                    
-            
-                    </div>
-                    <img class="cart-icon" href="#" src="{% static 'assets/cart.png' %}"></div>
+                    
+                    <a href="{% url 'checkout' %}"><img class="cart-icon" href="#" src="{% static 'assets/cart.png' %}"></div></a>
+                    <p id="cart-total">{{cartItems}}</p>
                     <img class="user-icon" href="#" src="{% static 'assets/users.png' %}"></div> 
             </nav>
        

@@ -31,9 +31,10 @@
                     <h1 class="display-5 fw-bolder mb-0"style="font-size:40px; text-align: center;"><span class="text-secondary" >Makanan</span></h1>
                 </div>
                 
+                
                 <div class="menu-container" style="margin-bottom:10rem;">
                     {% for menu in menu1 %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}<br><br><button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></span></div>
                     {% endfor %}
                     
               </div>
@@ -46,7 +47,7 @@
                 
                 <div class="menu-container" style="margin-bottom:10rem;">
                     {% for menu in menu2 %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}<br><br><button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></span></div>
                     {% endfor %}
                     
               </div>
@@ -59,7 +60,7 @@
                 
                 <div class="menu-container">
                     {% for menu in menu3 %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}</span></div>
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}<br><br><button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></span></div>
                     {% endfor %}
                     
               </div>

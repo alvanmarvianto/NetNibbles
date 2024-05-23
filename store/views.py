@@ -4,6 +4,8 @@ import json
 import datetime
 from .models import * 
 from .utils import cookieCart, cartData, guestOrder
+from django.db.models import Q
+
 
 def login(request):
 	return render(request, 'store/login.html')
@@ -46,7 +48,31 @@ def store(request):
 	products = Product.objects.all()
 	context = {'products':products, 'cartItems':cartItems}
 	return render(request, 'store/store.html', context)
+ 
+   
+def menu(request):
+  template_name = 'menu/index.html'
+  menu1 = Product.objects.filter(Q(category__iexact='Food') |
+                              Q(category__icontains='Food'))
+  menu2 = Product.objects.filter(Q(category__iexact='Drink') |
+                              Q(category__icontains='Drink'))
+  menu3 = Product.objects.filter(Q(category__iexact='Dessert') |
+                              Q(category__icontains='Dessert'))
+    
+  context = { "menu1": menu1, "menu2": menu2, "menu3": menu3 }
+  return render(request, template_name, context)
 
+def tnc(request):
+    template_name = 'menu/tnc.html'
+    return render(request, template_name)
+    
+def hns(request):
+    template_name = 'menu/contact.html'
+    return render(request, template_name)
+
+def aboutus(request):
+    template_name = 'menu/aboutus.html'
+    return render(request, template_name)
 
 def cart(request):
 	data = cartData(request)

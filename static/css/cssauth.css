@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/* Body Element */
+
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+}
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color:#D52B1E;
+}
+
+/* Container and Columning */
+
+.full-height {
+    height: 100vh; /* Full viewport height */
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.img-fluid {
+    max-height: 100%; /* Ensure the image fits within the container without stretching */
+    max-width: 100%; /* Ensure the image fits within the container without stretching */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.col-4 {
+    background-color: #FFF1DC;
+}
+
+/* Form CSS */
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+
+input[type=username] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #000000;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    border: none;
+    color: #FFF1DC;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    background-color: #D52B1E;
+    padding: 1.5% 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    color: #D52B1E;
+    background-color: #fff;
+    border: 0.2px solid #D52B1E;
+}

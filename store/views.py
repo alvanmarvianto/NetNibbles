@@ -146,3 +146,20 @@ def processOrder(request):
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
+
+def orderHistory(request):
+    orders = Order.objects.filter(customer__user=request.user).order_by('-date_ordered')
+    order_history = []
+
+    for order in orders:
+        items = OrderItem.objects.filter(order=order)
+        order_data = {
+            'order_id': order.id,
+            'date_ordered': order.date_ordered,
+            'total_price': order.get_cart_total,
+            'items': items,
+        }
+        order_history.append(order_data)
+
+    context = {'order_history': order_history}
+    return render(request, 'store/orderhistory.html', context)

@@ -171,7 +171,8 @@ def processOrder(request):
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
-
+	
+@login_required
 def orderHistory(request):
     orders = Order.objects.filter(customer__user=request.user).order_by('-date_ordered')
     order_history = []

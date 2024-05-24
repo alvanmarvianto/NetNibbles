@@ -82,4 +82,3 @@ def guestOrder(request, data):
 			quantity=(item['quantity'] if item['quantity']>0 else -1*item['quantity']), # negative quantity = freebies
 		)
 	return customer, order
-

@@ -1,20 +1,43 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import json
 import datetime
 from .models import * 
-from .utils import cookieCart, cartData, guestOrder
 from django.db.models import Q
-
-
-def login(request):
-	return render(request, 'store/login.html')
+from .utils import *
+from .forms import *
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 def register(request):
-	return render(request, 'store/register.html')
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'store/register.html', {'form': form})
 
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                return redirect('success')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'store/login.html', {'form': form})
+
+@login_required
 def success(request):
-	return render(request, 'store/successfull.html')
+    return render(request, 'store/successfull.html')
+
 
 def promo(request):
 	data = cartData(request)
@@ -74,25 +97,26 @@ def aboutus(request):
     template_name = 'menu/aboutus.html'
     return render(request, template_name)
 
-def cart(request):
-	data = cartData(request)
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'store/cart.html', context)
-
+@login_required
 def checkout(request):
-	data = cartData(request)
-	
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
+    data = cartData(request)
 
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
-	return render(request, 'store/checkout.html', context)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+    
+    if request.method == 'POST':
+        form = CheckoutForm(request.POST, user=request.user)
+        if form.is_valid():
+            full_name = form.cleaned_data['full_name']
+            phone = form.cleaned_data['phone']
+            address = form.cleaned_data['address']
+    else:
+        form = CheckoutForm(user=request.user)
+
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'form': form}
+    return render(request, 'store/checkout.html', context)
 
 def updateItem(request):
 	data = json.loads(request.body)

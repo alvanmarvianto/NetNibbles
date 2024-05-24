@@ -1,16 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 class Customer(models.Model):
-	user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-	name = models.CharField(max_length=200, null=True)
-	email = models.CharField(max_length=200)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=15, null=True)
+    email = models.EmailField(max_length=200)
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
 class Product(models.Model):
 	choices_category = (
     ('Food','Food'),
@@ -19,7 +21,6 @@ class Product(models.Model):
 	)
 	name = models.CharField(max_length=200)
 	price = models.FloatField()
-	digital = models.BooleanField(default=False,null=True, blank=True)
 	category = models.CharField(max_length=10, choices=choices_category, default='')
 	image = models.ImageField(null=True, blank=True)
 
@@ -75,11 +76,18 @@ class OrderItem(models.Model):
 		total = self.product.price * self.quantity
 		return total
 
+class CheckoutDetail(models.Model):
+	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+	full_name = models.CharField(max_length=200, null=True)
+	phone = models.CharField(max_length=15, null=True)
+	date_added = models.DateTimeField(auto_now_add=True)
+
 class ShippingAddress(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
 	number = models.CharField(max_length=200)
-	address = models.CharField(max_length=200, null=False)
+	phone = models.CharField(max_length=15, null=True)
 	date_added = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):

@@ -38,6 +38,13 @@
 
       <div class="navbar-extra">
         <a href="checkout" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'user_page' %}" id="user-icon">
+                <div class="user-icon">
+                    {{ request.user.first_name|slice:":1" }}{{ request.user.last_name|slice:":1" }}
+                </div>
+            </a>
+            {% endif %}
         <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
       </div>
     </nav>
@@ -135,3 +142,17 @@
     <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
+<style>
+  .user-icon {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      line-height: 40px;
+      font-size: 16px;
+      font-weight: bold;
+  }
+  </style>

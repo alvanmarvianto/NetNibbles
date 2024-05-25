@@ -42,6 +42,11 @@ def logout(request):
     auth_logout(request)
     return redirect('login')
 
+@login_required
+def user_page(request):
+    customer = request.user.customer
+    return render(request, 'store/user.html', {'customer': customer})
+
 
 def promo(request):
 	data = cartData(request)

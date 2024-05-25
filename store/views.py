@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import json
 import datetime
 from .models import * 
+from django.db.models import Q
 from .utils import *
 from .forms import *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
@@ -80,7 +81,31 @@ def store(request):
 	products = Product.objects.all()
 	context = {'products':products, 'cartItems':cartItems}
 	return render(request, 'store/store.html', context)
+ 
+   
+def menu(request):
+  template_name = 'menu/index.html'
+  menu1 = Product.objects.filter(Q(category__iexact='Food') |
+                              Q(category__icontains='Food'))
+  menu2 = Product.objects.filter(Q(category__iexact='Drink') |
+                              Q(category__icontains='Drink'))
+  menu3 = Product.objects.filter(Q(category__iexact='Dessert') |
+                              Q(category__icontains='Dessert'))
+    
+  context = { "menu1": menu1, "menu2": menu2, "menu3": menu3 }
+  return render(request, template_name, context)
 
+def tnc(request):
+    template_name = 'menu/tnc.html'
+    return render(request, template_name)
+    
+def hns(request):
+    template_name = 'menu/contact.html'
+    return render(request, template_name)
+
+def aboutus(request):
+    template_name = 'menu/aboutus.html'
+    return render(request, template_name)
 
 
 @login_required
@@ -156,3 +181,21 @@ def processOrder(request):
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
+	
+@login_required
+def orderHistory(request):
+    orders = Order.objects.filter(customer__user=request.user).order_by('-date_ordered')
+    order_history = []
+
+    for order in orders:
+        items = OrderItem.objects.filter(order=order)
+        order_data = {
+            'order_id': order.id,
+            'date_ordered': order.date_ordered,
+            'total_price': order.get_cart_total,
+            'items': items,
+        }
+        order_history.append(order_data)
+
+    context = {'order_history': order_history}
+    return render(request, 'store/orderhistory.html', context)

@@ -17,10 +17,11 @@ class Product(models.Model):
 	choices_category = (
     ('Food','Food'),
     ('Drink', 'Drink'),
+    ('Dessert', 'Dessert'),
 	)
 	name = models.CharField(max_length=200)
 	price = models.FloatField()
-	category = models.CharField(max_length=6, choices=choices_category, default='')
+	category = models.CharField(max_length=10, choices=choices_category, default='')
 	image = models.ImageField(null=True, blank=True)
 
 	def __str__(self):

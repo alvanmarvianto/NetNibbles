@@ -41,7 +41,7 @@
         {% if request.user.is_authenticated %}
             <a href="{% url 'user_page' %}" id="user-icon">
                 <div class="user-icon">
-                    {{ request.user.first_name|slice:":1" }}{{ request.user.last_name|slice:":1" }}
+                    {{ request.customer.first_name|slice:":1" }}{{ request.customer.last_name|slice:":1" }}
                 </div>
             </a>
             {% endif %}
@@ -148,7 +148,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: #000;
+      background-color: #e86161;
       color: #fff;
       text-align: center;
       line-height: 40px;

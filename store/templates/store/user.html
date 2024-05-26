@@ -4,16 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Profil Pengguna</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
-        <h1>User Profile</h1>
-        <p>Full Name: {{ customer.get_full_name }}</p>
-        <p>Phone: {{ customer.phone }}</p>
-        <p>Email: {{ customer.email }}</p>
+        <h1>Profil Pengguna</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Simpan Perubahan</button>
+        </form>
         <p><a href="{% url 'logout' %}">Logout</a></p>
     </div>
 </body>
 </html>
+

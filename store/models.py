@@ -13,6 +13,8 @@ class Customer(models.Model):
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
+        
+
 class Product(models.Model):
 	choices_category = (
     ('Food','Food'),
@@ -20,24 +22,25 @@ class Product(models.Model):
     ('Dessert', 'Dessert'),
 	)
 	name = models.CharField(max_length=200)
-	price = models.FloatField()
+	price = models.IntegerField()
 	image = models.ImageField(null=True, blank=True)
 	category = models.CharField(max_length=10, choices=choices_category, default='')
 	stock = models.IntegerField(default=0)
 
-	def __str__(self):
-		return self.name
-	
-	def is_available(self):
-		return self.stock >= 1
+    def __str__(self):
+        return self.name
 
-	@property
-	def imageURL(self):
-		try:
-			url = self.image.url
-		except:
-			url = ''
-		return url
+    def is_available(self):
+        return self.stock >= 1
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+
 
 class Order(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 import json
 import datetime
+from .utils import cookieCart, cartData, guestOrder
 from .models import * 
 from django.db.models import Q
 from .utils import *
@@ -83,18 +84,30 @@ def store(request):
 	context = {'products':products, 'cartItems':cartItems}
 	return render(request, 'store/store.html', context)
  
-   
+@login_required
 def menu(request):
-  template_name = 'menu/index.html'
-  menu1 = Product.objects.filter(Q(category__iexact='Food') |
-                              Q(category__icontains='Food'))
-  menu2 = Product.objects.filter(Q(category__iexact='Drink') |
-                              Q(category__icontains='Drink'))
-  menu3 = Product.objects.filter(Q(category__iexact='Dessert') |
-                              Q(category__icontains='Dessert'))
+    template_name = 'menu/index.html'
+  
+    data = cartData(request)
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
     
-  context = { "menu1": menu1, "menu2": menu2, "menu3": menu3 }
-  return render(request, template_name, context)
+    products = Product.objects.all()
+    menu1 = Product.objects.filter(Q(category__iexact='Food'))
+    menu2 = Product.objects.filter(Q(category__iexact='Drink'))
+    menu3 = Product.objects.filter(Q(category__iexact='Dessert'))
+    
+    context = { 
+        "menu1": menu1, 
+        "menu2": menu2, 
+        "menu3": menu3, 
+        'products': products, 
+        'cartItems': cartItems, 
+    }
+    
+    return render(request, template_name, context)
+
 
 def tnc(request):
     template_name = 'menu/tnc.html'
@@ -127,6 +140,7 @@ def checkout(request):
 
     context = {'items': items, 'order': order, 'cartItems': cartItems, 'form': form}
     return render(request, 'store/checkout.html', context)
+
 
 def updateItem(request):
 	data = json.loads(request.body)

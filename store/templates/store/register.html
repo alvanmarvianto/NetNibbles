@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NetNibbles | Register</title>
+    <title>NetNibbles | Daftar</title>
 </head>
 <body>
     <div class="container-fluid h-100">
@@ -27,15 +27,16 @@
             </div>
             <div class="col-6 px-5 d-flex flex-column justify-content-center full-height">
                 <div class="container-fluid">
-                    <h1>Register</h1>
+                    <h1>Daftar</h1>
                     <br>
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <br>
-                    <button type="submit" value="Login">Login</button>
+                    <button type="submit" value="Login">Daftar</button>
                     </form>
-                    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                    <p>Sudah punya akun? <a href="{% url 'login' %}">Masuk sini</a></p>
+                    <p>Ingin kembali? <a href="{% url 'home' %}">Mampir sini</a></p>
                 </div>
             </div>
         </div>

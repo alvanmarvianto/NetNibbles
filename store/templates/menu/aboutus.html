@@ -1,3 +1,5 @@
+{% extends 'store/main.html' %}
+{% block content %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -21,8 +23,6 @@
     <body>
         
         <main class="flex-shrink-1" style="background-color:#fef0db; font-family: 'DM Sans', sans-serif;">
-
-{% include 'menu/snippets.html' %}
 
 <main style="padding-left: 50px; font: 'DM Sans'; padding-right: 50px; font-align: justify; margin-left:8rem;  margin-right:8rem;  margin-bottom:3rem;">
 <header style="background-color:#fef0db; font-family: 'DM Sans', sans-serif; color: black; z-index: 10;" class="flex-shrink-0 ">
@@ -73,3 +73,5 @@
         
     </body>
 </html>
+
+{% endblock content %}

@@ -21,6 +21,7 @@ class Product(models.Model):
 	)
 	name = models.CharField(max_length=200)
 	price = models.FloatField()
+	image = models.ImageField(null=True, blank=True)
 	category = models.CharField(max_length=10, choices=choices_category, default='')
 	stock = models.IntegerField(default=0)
 
@@ -52,8 +53,7 @@ class Order(models.Model):
 		shipping = False
 		orderitems = self.orderitem_set.all()
 		for i in orderitems:
-			if i.product.digital == False:
-				shipping = True
+			shipping = True
 		return shipping
 
 	@property
@@ -90,11 +90,10 @@ class CheckoutDetail(models.Model):
 	phone = models.CharField(max_length=15, null=True)
 	date_added = models.DateTimeField(auto_now_add=True)
 
-class ShippingAddress(models.Model):
+class Transaction(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-	number = models.CharField(max_length=200)
-	phone = models.CharField(max_length=15, null=True)
+	address = models.CharField(max_length=200)
 	date_added = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):

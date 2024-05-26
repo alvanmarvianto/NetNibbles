@@ -1,6 +1,8 @@
 {% load static %}
             
-            <nav class="navbar navbar-expand-lg py-3" style="background-color: transparant; z-index: 1000;" >
+            <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+            
+            <nav class="navbar navbar-expand-lg py-3" style="background-color: #fef0db; z-index: 1000;" >
                 <div class="container" >
                     <a class="navbar-brand" style="margin-left:50px" href="index.html"><span class="fw-bolder text-primary"><img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar" /></span></a>
                             
@@ -14,11 +16,16 @@
                     </div>
                 </div>
                 
+                {% if request.user.is_authenticated %}
                 <header class="header"> 
-                     <a href="{% url 'checkout' %}"><img class="cart-icon" href="#" src="{% static 'assets/cart.png' %}"></div></a>
+                     <a href="{% url 'checkout' %}"><img class="cart-icon" src="{% static 'assets/cart.png' %}"></div></a>
                     <p id="cart-total">{{cartItems}}</p>
-                    <img class="user-icon" href="#" src="{% static 'assets/users.png' %}"></div>
-                
+
+                    <a href="{% url 'user_page' %}" class="nav-link">
+                    {% for user in user %}
+                    <div class="user-icon">{{ user.first_name.0 }}</p></div></a>
+                    {% endfor %}
+                {% endif %}
             </nav>
        
             

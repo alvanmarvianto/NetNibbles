@@ -46,6 +46,9 @@ def logout(request):
 
 @login_required
 def user_page(request):
+    data = cartData(request)
+    cartItems = data['cartItems']
+    user = Customer.objects.all()
     customer = request.user.customer
     if request.method == 'POST':
         form = CustomerForm(request.POST, instance=customer)
@@ -55,24 +58,24 @@ def user_page(request):
     else:
         form = CustomerForm(instance=customer)
     
-    return render(request, 'store/user.html', {'form': form, 'customer': customer})
+    return render(request, 'store/user.html', {'form': form, 'customer': customer, "user": user, 'cartItems': cartItems,})
 
 
 def home(request):
-	data = cartData(request)
+  data = cartData(request)
+  user = Customer.objects.all()
+  cartItems = data['cartItems']
+  order = data['order']
+  items = data['items']
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-
-	products = Product.objects.all()
-	context = {'products':products, 'cartItems':cartItems}
-	return render(request, 'store/home.html', context)
+  products = Product.objects.all()
+  context = {'products':products, 'cartItems':cartItems, "user": user,}
+  return render(request, 'store/home.html', context)
 
 @login_required
 def store(request):
 	data = cartData(request)
-
+  
 	cartItems = data['cartItems']
 	order = data['order']
 	items = data['items']
@@ -84,7 +87,8 @@ def store(request):
 @login_required
 def menu(request):
     template_name = 'menu/index.html'
-  
+    
+    user = Customer.objects.all()
     data = cartData(request)
     cartItems = data['cartItems']
     order = data['order']
@@ -96,6 +100,7 @@ def menu(request):
     menu3 = Product.objects.filter(Q(category__iexact='Dessert'))
     
     context = { 
+        "user": user,
         "menu1": menu1, 
         "menu2": menu2, 
         "menu3": menu3, 
@@ -107,21 +112,46 @@ def menu(request):
 
 
 def tnc(request):
+    
+    user = Customer.objects.all()
+    data = cartData(request)
+    cartItems = data['cartItems']
+      
+    context = { 
+        "user": user,
+        'cartItems': cartItems, 
+    }
     template_name = 'menu/tnc.html'
-    return render(request, template_name)
+    return render(request, template_name, context)
     
 def hns(request):
+    user = Customer.objects.all()
+    data = cartData(request)
+    cartItems = data['cartItems']
+      
+    context = { 
+        "user": user,
+        'cartItems': cartItems, 
+    }
     template_name = 'menu/contact.html'
-    return render(request, template_name)
+    return render(request, template_name, context)
   
 def aboutus(request):
+    user = Customer.objects.all()
+    data = cartData(request)
+    cartItems = data['cartItems']
+      
+    context = { 
+        "user": user,
+        'cartItems': cartItems, 
+    }
     template_name = 'menu/aboutus.html'
-    return render(request, template_name)
+    return render(request, template_name, context)
   
 @login_required
 def checkout(request):
     data = cartData(request)
-
+    user = Customer.objects.all()
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
@@ -135,7 +165,7 @@ def checkout(request):
     else:
         form = CheckoutForm(user=request.user)
 
-    context = {'items': items, 'order': order, 'cartItems': cartItems, 'form': form}
+    context = {'items': items, 'order': order, 'cartItems': cartItems, 'form': form, "user": user,}
     return render(request, 'store/checkout.html', context)
 
 
@@ -196,6 +226,10 @@ def processOrder(request):
 	
 @login_required
 def orderHistory(request):
+    user = Customer.objects.all()
+    data = cartData(request)
+    cartItems = data['cartItems']
+      
     orders = Order.objects.filter(customer__user=request.user, complete=True).order_by('-date_ordered')
     order_history = []
 
@@ -206,9 +240,10 @@ def orderHistory(request):
             'date_ordered': order.date_ordered,
             'total_price': order.get_cart_total,
             'items': items,
+             
         }
 
         order_history.append(order_data)
 
-    context = {'order_history': order_history}
+    context = {'order_history': order_history, "user": user, 'cartItems': cartItems,}
     return render(request, 'store/orderhistory.html', context)

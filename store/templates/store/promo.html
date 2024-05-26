@@ -1,0 +1,23 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NetNibbles | Promo</title><link rel="icon" href="{% static 'images/logojudul.png' %}" type="image/png" />
+</head>
+<h1>This is our promos</h1>
+<div class="row">
+    <div class="col-lg-4">
+        <img class="thumbnail" src="../../../static/images/burger.jpg">
+        <div class="box-element product">
+            <h6><strong>Burger </strong></h6>
+            <hr>
+            <h6>Buy 2 get 1</h6>
+
+            <a class="btn btn-outline-success" href="{% url 'store' %}">Get it</a>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

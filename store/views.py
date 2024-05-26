@@ -181,15 +181,13 @@ def updateItem(request):
 
 	return JsonResponse('Item was added', safe=False)
 
+@login_required
 def processOrder(request):
 	transaction_id = datetime.datetime.now().timestamp()
 	data = json.loads(request.body)
 
-	if request.user.is_authenticated:
-		customer = request.user.customer
-		order, created = Order.objects.get_or_create(customer=customer, complete=False)
-	else:
-		customer, order = guestOrder(request, data)
+	customer = request.user.customer
+	order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
 	total = float(data['form']['total'])
 	order.transaction_id = transaction_id
@@ -199,30 +197,28 @@ def processOrder(request):
 	order.save()
 
 	if order.shipping == True:
-		ShippingAddress.objects.create(
+		Transaction.objects.create(
 		customer=customer,
 		order=order,
 		address=data['shipping']['address'],
-		city=data['shipping']['city'],
-		state=data['shipping']['state'],
-		zipcode=data['shipping']['zipcode'],
 		)
 
 	return JsonResponse('Payment submitted..', safe=False)
 	
 @login_required
 def orderHistory(request):
-    orders = Order.objects.filter(customer__user=request.user).order_by('-date_ordered')
+    orders = Order.objects.filter(customer__user=request.user, complete=True).order_by('-date_ordered')
     order_history = []
 
     for order in orders:
         items = OrderItem.objects.filter(order=order)
         order_data = {
-            'order_id': order.id,
+            'order_id': order.transaction_id,
             'date_ordered': order.date_ordered,
             'total_price': order.get_cart_total,
             'items': items,
         }
+
         order_history.append(order_data)
 
     context = {'order_history': order_history}

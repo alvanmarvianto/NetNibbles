@@ -1,163 +1,97 @@
+{% extends 'store/main.html' %}
+{% block content %}
 {% load static %}
 
 
-<!DOCTYPE html>
-<html lang="en">
-  
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NetNibbles | Home</title><link rel="icon" href="{% static 'images/logojudul.png' %}" type="image/png" />
+<!-- Bootsrap Connect -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- Feather Icons -->
+<script src="https://unpkg.com/feather-icons"></script>
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
 
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-    
     <!-- My Style -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  </head>
   
-  
-  <body>
-    <!-- Navbar Start -->
-    <nav class="navbar">
-      <img src="{% static 'images/logo.png' %}" class="hello" />
+    <head>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+      <title>NetNibbles</title>
+      <meta content="" name="description">
+      <meta content="" name="keywords">
+    </head>
 
-      <div class="navbar-nav">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'store' %}">Menu</a>
-        <a href="{% url 'orderhistory' %}">Pemesanan</a>
-      </div>
-
-      <div class="search-box">
-        <input type="text" placeholder="Search..." />
-        <a href="#" id="search"><i data-feather="search"></i></a>
-      </div>
-
-      <div class="navbar-extra">
-        <a href="checkout" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
-        {% if request.user.is_authenticated %}
-            <a href="{% url 'user_page' %}" id="user-icon">
-                <div class="user-icon">
-                    {{ request.customer.first_name|slice:":1" }}{{ request.customer.last_name|slice:":1" }}
-                </div>
-            </a>
-            {% endif %}
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-      </div>
-    </nav>
-    <!-- Navbar End -->
-
-    <!-- Hero Section Start-->
-    <section class="hero" id="home">
-      <div class="gambar">
-        <img src="{% static 'images/Rectangle 6.png' %}" />
-        <div class="burger">
-          <img src="{% static 'images/Rectangle 7.png' %}" />
+    <body>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 d-flex align-items-start flex-column justify-content-center full-height">
+            <h1>Selamat Datang<br>Di NetNibbles</h1>
+            <p>NetNibbles merupakan pilihan tepat untuk memuaskan rasa lapar Anda <br> dengan hidangan lezat dan cepat saji. Kami menawarkan berbagai menu 
+            <br />favorit seperti burger, ayam goreng, dan masih banyak lagi.</p>
+            <button>Beli Sekarang ></button>
+          </div>
+            <div class="col-md-6">
+            <img src="{% static 'images/Group 12.png' %}" class="img-fluid"></img>
+          </div>
         </div>
       </div>
-      <div class="content">
-        <img src="{% static 'images/Rectangle 5.png' %}" />
-        <h1>Selamat Datang <br />Di NetNibbles</h1>
-        <p>
-          NetNibbles merupakan pilihan tepat untuk memuaskan rasa lapar Anda
-          <br />
-          dengan hidangan lezat dan cepat saji. Kami menawarkan berbagai menu
-          <br />
-          favorit seperti burger, ayam goreng, dan masih banyak lagi.
-        </p>
-        <a href="#" class="cta">Beli Sekarang ></a>
+      <div class="container container-md">
+
+      
       </div>
-    </section>
-
-    <!-- Hero Section End-->
-
-    <!-- Best Selling Start-->
-
-    <section class="best" id="home">
-      <div class="sell">
-        <img src="{% static 'images/Best.png' %}" />
-        <h1>Telusuri Makanan <br />Favorit</h1>
-        <p>
-          Telusuri menu kami yang beragam, yang dirancang untuk memenuhi selera,
-          <br />
-          kami menyediakan opsi yang cocok untuk setiap selera dan kebutuhan.
-        </p>
-        <a href="#" class="cta">Telusuri Menu ></a>
+      <div class="container-fluid px-5">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{% static 'images/Best.png' %}" class="img-fluid"></img>
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-6 d-flex align-items-start flex-column justify-content-center full-height">
+            <h1>Telusuri Makanan <br/>Favorit</h1>
+            <p>Telusuri menu kami yang beragam, yang dirancang untuk memenuhi selera,<br> kami menyediakan opsi yang cocok untuk setiap selera dan kebutuhan.</p>
+            <button>Telusuri Menu ></button>
+          </div>
+        </div>
       </div>
-    </section>
+      <div class="container container-md">
 
-    <!-- Best Selling End -->
-
-    <!-- Located Start-->
-    <section class="lokasi" id="home">
-      <div class="located">
-        <img src="{% static 'images/Group 11.png' %}" />
-        <h1>Kunjungi Kami <br />Hadir 24 Jam</h1>
-        <p>
-          Nikmati kenyamanan memesan secara online melalui situs web kami <br />
-          atau kunjungi salah satu cabang kami yang tersebar luas untuk <br />
-          menikmati hidangan favorit Anda langsung di tempat.
-        </p>
       </div>
-    </section>
-
-    <!-- Located End -->
-
-    <!-- Contact Start -->
-    <section class="kontak" id="home">
-      <div class="contact">
-        <img src="{% static 'images/Group 1.png' %}" />
-        <h1>Hubungi Kami</h1>
+      <div class="container-fluid px-5">
+        <div class="row">
+          <div class="col-md-6 d-flex align-items-start flex-column justify-content-center full-height">
+            <h1>Kunjungi Kami<br>Hadir 24 Jam</h1>
+            <p>Nikmati kenyamanan memesan secara online melalui situs web <br> atau kunjungi salah satu cabang kami yang tersebar luas untuk <br> menikmati hidangan favorit Anda langsung di tempat.</p>
+          
+          </div>
+          <div class="col-md-6">
+            <img src="{% static 'images/Group 11.png' %}" class="img-fluida"></img>
+          </div>
+        </div>
       </div>
-    </section>
-    <!-- Contact End -->
+      <div class="container container-md">
 
-    <!-- Footer Start -->
-    <footer>
-      <div class="logo">
-        <img src="{% static 'images/logo.png' %}" class="say" />
       </div>
-
-      <div class="credit">
-        <a href="{% url 'aboutus' %}">Abous Us</a>
-        <a href="#contact">Help & support</a>
-        <a href="{% url 'tnc' %}">Terms & conditions</a>
+      <div class="kontak">
+        <div class="contact">
+          <div class="col-md-6">
+            <h1>Hubungi Kami</h1>
+          </div>
+          <div class="col-md-6">
+            <img src="{% static 'images/contact.png' %}" class="img-fluid"></img>
+          </div>
+        </div>
       </div>
-
-      <div class="no">
-        <a href="nomor">Contact: +62 8123456789</a>
-      </div>
-    </footer>
-
-    <!-- Footer End -->
-    <!--Feather Icons -->
-    <script>
-      feather.replace();
-    </script>
-
-    <!-- My JavaScript -->
-    <script src="{% static 'js/script.js' %}"></script>
-  </body>
-</html>
-<style>
-  .user-icon {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #e86161;
-      color: #fff;
-      text-align: center;
-      line-height: 40px;
-      font-size: 16px;
-      font-weight: bold;
-  }
-  </style>
+    </div>
+    </body>
+{% endblock %}  

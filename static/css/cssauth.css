@@ -2,10 +2,11 @@
 
 /* Body Element */
 
-h1 {
+.rs > h1 {
     font-size: 3em;
     font-weight: bold;
 }
+
 body {
     font-family: 'DM Sans', sans-serif;
 }

@@ -11,6 +11,17 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
+def home(request):
+  data = cartData(request)
+  user = Customer.objects.all()
+  cartItems = data['cartItems']
+  order = data['order']
+  items = data['items']
+
+  products = Product.objects.all()
+  context = {'products':products, 'cartItems':cartItems, "user": user,}
+  return render(request, 'store/home.html', context)
+  
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -59,18 +70,6 @@ def user_page(request):
         form = CustomerForm(instance=customer)
     
     return render(request, 'store/user.html', {'form': form, 'customer': customer, "user": user, 'cartItems': cartItems,})
-
-
-def home(request):
-  data = cartData(request)
-  user = Customer.objects.all()
-  cartItems = data['cartItems']
-  order = data['order']
-  items = data['items']
-
-  products = Product.objects.all()
-  context = {'products':products, 'cartItems':cartItems, "user": user,}
-  return render(request, 'store/home.html', context)
 
 @login_required
 def store(request):

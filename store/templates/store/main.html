@@ -65,29 +65,38 @@
 
 	{% load static %}
             
-	<link href="{% static 'css/style.css' %}" rel="stylesheet" />
-	
-	<nav class="navbar navbar-expand-lg py-3" style="background-color: transparant; z-index: 1000;" >
-		<div class="container" >
-			<a class="navbar-brand" style="margin-left:50px" href="index.html"><span class="fw-bolder text-primary"><img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar" /></span></a>
-					
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mb-2 mb-lg-0 ">
-					<li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'home' %}">Home</a></li>
-					<li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'store' %}">Menu</a></li>
-					<li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'orderhistory' %}">Pemesanan</a></li>
-				</ul>
-			</div>
-		</div>   
-		<header class="header"> 
-			<a href="{% url 'checkout' %}"><img class="cart-icon" src="{% static 'assets/cart.png' %}"></div></a>
-			<p id="cart-total">{{cartItems}}</p>
-			<a href="{% url 'user_page' %}"><img class="user-icon" src="{% static 'assets/users.png' %}"></div></a>
-	</nav>
+            <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+            
+            <nav class="navbar navbar-expand-lg py-3" style="background-color: #fef0db; z-index: 1000;" >
+                <div class="container" >
+                    <a class="navbar-brand" style="margin-left:50px" href="{% url 'home' %}"><span class="fw-bolder text-primary"><img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar" /></span></a>
+                            
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-2 mb-lg-0 ">
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'home' %}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'menu' %}">Menu</a></li>
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'orderhistory' %}">Pemesanan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                {% if request.user.is_authenticated %}
+                <header class="header"> 
+                     <a href="{% url 'checkout' %}"><img class="cart-icon" src="{% static 'assets/cart.png' %}"></div></a>
+                    <p id="cart-total">{{cartItems}}</p>
 
-	    </div>
-	  </div>
+                    <a href="{% url 'user_page' %}" class="nav-link">
+                    {% for user in user %}
+                    <div class="user-icon">{{ user.first_name.0 }}</p></div></a>
+                    {% endfor %}
+                {% endif %}
+            </nav>
+       
+            
+
+
+
 	</nav>
 
      <div class="container">
@@ -103,7 +112,6 @@
 				<div class = "row gx-5">
 					<div class = "col-lg-6">
 						<img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar">
-		
 					</div>
 					<div class="col-lg-6 text-lg-end">
 						<ul class="list-inline mb-0">

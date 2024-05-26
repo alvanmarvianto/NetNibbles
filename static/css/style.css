@@ -116,8 +116,8 @@ body {
 .search-container {
     display: flex;
     align-items: center;
-    background-color: #f8f9fa; /* Light pink background color */
-    border-radius: 8px; /* Less rounded corners */
+    background-color: #ffc700; /* Light pink background color */
+    border-radius: 100%; /* Less rounded corners */
     padding: 5px 10px;
     margin-right: 20px;
     flex-grow: 1;
@@ -136,35 +136,43 @@ body {
 }
 
 .cart-icon {
-    color: #000;
     font-size: 24px;
     margin-right: 0px;
     padding-left: 900px;
 }
 
 #cart-total{
-	display: block;
+	display: flex;
 	text-align: center;
-	color: #fffff;
-  font-color: #fffff;
+	color: #ffffff;
+  align-items: center;
+  justify-content: center;
 	background-color: #d52b1e;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
 	font-size: 17px;
+  line-height: normal; /* Mengatur line-height menjadi normal */
+  text-align: center;
+  box-sizing: border-box; /* Memastikan padding tidak mempengaruhi ukuran elemen */
+  padding: 0;
 }
 
 .user-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0); /* Yellow background color */
+    background-color: #ffc700; /* Yellow background color */
     color: #fff;
-    border-radius: 0%; /* Still fully rounded for the user icon */
-    font-size: 20px;
-    font-weight: bold;
+    border-radius: 50%; /* Still fully rounded for the user icon */
+    font-size: 30px;
+    height: 50px;
+    width: 50px;
     margin-left: 20px;
-    padding-right: 20px;
+    line-height: normal; /* Mengatur line-height menjadi normal */
+    text-align: center;
+    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi ukuran elemen */
+    padding: 0;
 }
 
 
@@ -3826,7 +3834,7 @@ textarea.form-control-lg {
 .navbar {
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0.5rem;
-  --bs-navbar-color: rgba(0, 0, 0, 0.55);
+  --bs-navbar-color: #fef0db;
   --bs-navbar-hover-color: rgba(0, 0, 0, 0.7);
   --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);
   --bs-navbar-active-color: rgba(0, 0, 0, 0.9);

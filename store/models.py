@@ -22,10 +22,13 @@ class Product(models.Model):
 	name = models.CharField(max_length=200)
 	price = models.FloatField()
 	category = models.CharField(max_length=10, choices=choices_category, default='')
-	image = models.ImageField(null=True, blank=True)
+	stock = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.name
+	
+	def is_available(self):
+		return self.stock >= 1
 
 	@property
 	def imageURL(self):
@@ -70,6 +73,10 @@ class OrderItem(models.Model):
 	order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
 	quantity = models.IntegerField(default=0, null=True, blank=True)
 	date_added = models.DateTimeField(auto_now_add=True)
+
+	@property
+	def is_available(self):
+		return self.product.stock >= self.quantity
 
 	@property
 	def get_total(self):

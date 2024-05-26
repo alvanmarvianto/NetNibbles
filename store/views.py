@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 import json
 import datetime
@@ -71,6 +71,7 @@ def home(request):
 	context = {'products':products, 'cartItems':cartItems}
 	return render(request, 'store/home.html', context)
 
+@login_required
 def store(request):
 	data = cartData(request)
 
@@ -102,12 +103,11 @@ def tnc(request):
 def hns(request):
     template_name = 'menu/contact.html'
     return render(request, template_name)
-
+  
 def aboutus(request):
     template_name = 'menu/aboutus.html'
     return render(request, template_name)
-
-
+  
 @login_required
 def checkout(request):
     data = cartData(request)
@@ -140,12 +140,18 @@ def updateItem(request):
 	order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
 	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-
+                
 	if action == 'add':
-		orderItem.quantity = (orderItem.quantity + 1)
+		if orderItem.is_available:
+			orderItem.quantity = (orderItem.quantity + 1)
+		else:
+			return JsonResponse('Produk tidak tersedia', safe=False)
 	elif action == 'remove':
-		orderItem.quantity = (orderItem.quantity - 1)
-
+		if orderItem.quantity > 0:
+			orderItem.quantity = (orderItem.quantity - 1)
+		else:
+			return JsonResponse('Produk tidak tersedia', safe=False)
+	
 	orderItem.save()
 
 	if orderItem.quantity <= 0:

@@ -61,17 +61,6 @@ def user_page(request):
     return render(request, 'store/user.html', {'form': form, 'customer': customer, "user": user, 'cartItems': cartItems,})
 
 
-def promo(request):
-	data = cartData(request)
-
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-
-	products = Product.objects.all()
-	context = {'products':products, 'cartItems':cartItems}
-	return render(request, 'store/promo.html', context)
-
 def home(request):
   data = cartData(request)
   user = Customer.objects.all()

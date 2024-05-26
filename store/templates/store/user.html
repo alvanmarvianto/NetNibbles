@@ -1,26 +1,51 @@
+<!-- Load Static -->
+{% extends 'store/main.html' %}
+{% block content %}
 {% load static %}
 
+<!-- Bootsrap Connect -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<!-- Load CSS -->
+<link href="{% static 'css/cssauth.css' %}" rel="stylesheet">
+
+<!-- Code -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Pengguna</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>NetNibbles | Profile</title><link rel="icon" href="{% static 'images/logojudul.png' %}" type="image/png" />
 </head>
-
-{% include 'snippets/main.html' %}
-
-<body>
+<body style="background-color: #FFF1DC;">
     <div class="container">
-        <h1>Profil Pengguna</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Simpan Perubahan</button>
-        </form>
-        <p><a href="{% url 'logout' %}">Logout</a></p>
-    </div>
+        <div class="container-fluid px-5 my-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h1>Profil Pengguna</h1>
+                </div>
+            </div>
+            </div>
+            <div class="title-container">
+        
+            </div>
+            <div class="container-fluid px-5 py-5" style="background-color: #FFF;">
+                <br>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <button type="submit">Simpan Perubahan</button>
+                </form>
+                <br>
+                <button href="{% url 'logout' %}">Logout</button>
+            </div>
+        </div>
+        <div class="title-container my-5">
+        <br>
+        </div>
 </body>
 </html>
-
+{% endblock %}

@@ -1,7 +1,8 @@
 <!-- Static Load -->
-{% extends 'store/main.html' %}
 {% load static %}
-{% block content %}
+
+
+{% include 'snippets/main.html' %}
 
 <!-- Bootsrap Connect -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -12,6 +13,7 @@
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <!-- CSS Style -->
 <link href="{% static 'css/orderhistory.css' %}" rel="stylesheet">
@@ -34,6 +36,7 @@
     }
 </style>
 
+
 <!-- Code -->
 <head>
     <meta charset="utf-8">
@@ -43,6 +46,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 </head>
+
+
+
 <body>
     <div class="container-fluid px-5 my-5">
     <div class="row">
@@ -87,4 +93,3 @@
         {% endif %}
     </div>
 </body>
-{% endblock %}

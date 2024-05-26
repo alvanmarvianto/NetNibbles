@@ -1,7 +1,5 @@
 <!-- Static Load -->
-{% extends 'store/main.html' %}
 {% load static %}
-{% block content %}
 
 <!-- Bootsrap Connect -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -17,14 +15,19 @@
 <link href="{% static 'css/stylecheckout.css' %}" rel="stylesheet">
 
 <!-- Code -->
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title></title>
+    <title>NetNibbles | Checkout</title><link rel="icon" href="{% static 'images/logojudul.png' %}" type="image/png" />
     <meta content="" name="description">
     <meta content="" name="keywords">
 </head>
+
+{% include 'snippets/main.html'%}
+
 <div class="container">
     <div class="container-fluid px-5 my-5">
         <div class="row">
@@ -175,4 +178,3 @@
                 })
         }
     </script>
-{% endblock content %}

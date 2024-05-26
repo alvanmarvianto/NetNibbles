@@ -46,7 +46,15 @@ def logout(request):
 @login_required
 def user_page(request):
     customer = request.user.customer
-    return render(request, 'store/user.html', {'customer': customer})
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('user_page')
+    else:
+        form = CustomerForm(instance=customer)
+    
+    return render(request, 'store/user.html', {'form': form, 'customer': customer})
 
 
 def promo(request):

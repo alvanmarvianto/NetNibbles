@@ -4,17 +4,18 @@
             
             <nav class="navbar navbar-expand-lg py-3" style="background-color: #fef0db; z-index: 1000;" >
                 <div class="container" >
-                    <a class="navbar-brand" style="margin-left:50px" href="index.html"><span class="fw-bolder text-primary"><img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar" /></span></a>
+                    <a class="navbar-brand" style="margin-left:50px" href="{% url 'home' %}"><span class="fw-bolder text-primary"><img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar" /></span></a>
                             
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mb-2 mb-lg-0 ">
                             <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'home' %}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'store' %}">Menu</a></li>
+                            <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'menu' %}">Menu</a></li>
                             <li class="nav-item"><a class="nav-link" style="margin-left: 45px;" href="{% url 'orderhistory' %}">Pemesanan</a></li>
                         </ul>
                     </div>
                 </div>
+				
                 
                 {% if request.user.is_authenticated %}
                 <header class="header"> 
@@ -22,12 +23,12 @@
                     <p id="cart-total">{{cartItems}}</p>
 
                     <a href="{% url 'user_page' %}" class="nav-link">
-                    {% for user in user %}
-                    <div class="user-icon">{{ user.first_name.0 }}</p></div></a>
-                    {% endfor %}
+                    <!-- <div class="user-icon">{{ request.user }}</p></div> -->
+					<div class="user-icon" style="background-color: #fef0db;">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+					  </svg>
+					</div>
+					</a>
                 {% endif %}
             </nav>
-       
-            
-
-

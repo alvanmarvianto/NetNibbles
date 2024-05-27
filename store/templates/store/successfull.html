@@ -8,9 +8,15 @@
 <body>
     <div class="container">
         <h1><img src="{% static 'images/logo.png' %}"></h1>
-        <h3>Login Successfull</h3>
-        <p>You have successfully singed into your account. You can go to menu to start shopping.</p>
-        <p><a href="{% url 'home' %}">Go to home page</a></p>
+        <h3>Login Berhasil</h3>
+        <p>Anda telah berhasil masuk ke akun Anda. Anda dapat masuk ke menu untuk mulai berbelanja.</p>
+        <p>Anda akan otomatis redirect ke <a href="{% url 'menu' %}">Menu</a> dalam 5 detik</p>
     </div>
+    <script>
+        // JavaScript to redirect after 5 seconds
+        setTimeout(function() {
+            window.location.href = "{% url 'menu' %}"; // Ganti 'target_url_name' dengan nama URL yang Anda tuju
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
 </body>
 </html>

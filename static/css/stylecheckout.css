@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #FFF1DC;
+}
+
+.cardz {
+    background-color: #fff;
+}
+
+.border {
+    border: 3px solid #000;
+}
+
+/* Form styles */
+form {
+    width: 100%;
+}
+
+/* Style for form groups */
+
+/* Style for labels */
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    max-width: 130%;
+}
+
+/* Style for input fields */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+textarea#id_address {
+    width: 100%; 
+    height: 100%; 
+    resize: none;
+}
+
+.submitbutton {
+    border: none;
+    color: #FFF1DC;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    background-color: #D52B1E;
+    padding: 1.5% 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;  
+}
+
+.submitbutton:hover {
+    color: #D52B1E;
+    background-color: #fff;
+    border: 0.2px solid #D52B1E;
+}

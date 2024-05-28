@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- CSS Style -->
+<link rel="stylesheet" href="{% static 'css/universal.css' %}"/>
 <link href="{% static 'css/stylecheckout.css' %}" rel="stylesheet">
 
 <!-- Code -->
@@ -69,9 +70,10 @@
                     {% for item in category.list %}
                     <div class="card" style="max-width: 540px;">
                         <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{item.product.imageURL}}" class="img-fluid rounded-start">
+                            <div class="col-md-4 d-flex flex-column justify-content-center full-height">
+                                <img style="height: auto;" src="{{item.product.imageURL}}" class="img-fluid rounded-start">
                             </div>
+                            <br>
                             <div class="col-md-7 d-flex flex-column justify-content-center full-height ">
                                 <div class="card-body">
                                     <h6 class="card-title">{{item.product.name}}</h6>
@@ -80,11 +82,11 @@
                             </div>
                             <div class="col-md-1 d-flex flex-column justify-content-center full-height">
                                 <div class="quantity">
-                                    <img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+                                    <img style="width: 10px;" data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
                                 </div>
                                 <p style="margin-bottom: 0px; margin-top: 5px;">{{item.quantity}}</p>
                                 <div class="quantity">
-                                    <img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+                                    <img style="width: 10px;" data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
                                 </div>
                             </div>
                         </div>

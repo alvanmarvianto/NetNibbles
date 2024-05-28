@@ -1,155 +1,45 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
-:root {
-  --primary: #fff;
-
-  --bg: #fff1dc;
-}
-
-* {
-  margin: 0;
-
-  padding: 0;
-
-  box-sizing: border-box;
-
-  outline: none;
-
-  border: none;
-
-  text-decoration: none;
-}
-
 body {
   font-family: "Dm Sans", sans-serif;
-  background-color: var(--bg);
+  background-color: #fef0db;
   color: #fff;
-  min-height: 2000px;
-}
-
-.container {
-  padding: 5rem 7%;
-  max-width: 60rem;
-}
-
-h1 {
-  padding: 5rem;
-  font-size: 8rem;
-  color: #d52b1e;
-  line-height: 1;
-}
-
-p {
-  padding: 5rem;
-  font-size: 1rem;
-  margin-top: -9rem;
-  line-height: 1.4;
-  color: #010101;
-}
-
-button {
-  margin-top: -5rem;
-  display: inline-block;
-  background-color: #d52b1e;
-  color: #fff;
-  padding: 1rem 3rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0.5rem;
-  box-shadow: 1px 1px 4px rgba(1, 1, 3, 0.5);
+  margin-right: 5rem;
   margin-left: 5rem;
 }
 
-button:hover {
-  background-color: #d52b1e;
-}
-
-.col-md-6 .img-fluid {
-  display: flex;
-  position: absolute;
-  margin-top: 1rem;
-  max-width: 800px;
-  height: auto;
-}
-
-.container-fluid.px-5 {
-  padding: 2rem;
-  max-width: 50rem;
-}
-
-.col-md-6 img {
-  display: flex;
-  position: absolute;
-  max-width: 200px;
-  height: auto;
-}
-
-.col-md-6 h1 {
-  padding-top: 10rem;
-  font-size: 5rem;
-  text-align: left;
+h1 {
+  font-size: 5rem; 
+  font-weight: bold; 
+  margin-bottom: 1rem;
   color: #d52b1e;
-  line-height: 1;
-  margin-right: -30rem;
 }
 
-.col-md-6 .col-md-6 p {
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: #010101;
-  margin-right: -30rem;
+h2 {
+  color: black;
 }
 
-.col-md-6 .col-md-6 button {
-  background-color: #d52b1e;
+p {
+  font-size: 1.25rem;
+  text-align: justify;
+  color: black;
+}
+
+.main button {
+  border: none;
   color: #fff;
-  padding: 1rem 3rem;
-  font-size: 1rem;
-  border-radius: 0.5rem;
-  transition: 0.3s;
-  box-shadow: 1px 1px 4px rgba(1, 1, 3, 0.5);
-  float: left;
-  margin-right: -30rem;
-}
-
-.col-md-6 .col-md-6 button:hover {
+  font-family: 'DM Sans';
+  font-weight: bold;
   background-color: #d52b1e;
-}
-
-.container-fluid.px-5 {
-  padding: 20rem;
-  max-width: 110rem;
-}
-.col-md-6 .col-md-6 h1 {
-  padding-top: 15rem;
-  font-size: 4rem;
-  color: #d52b1e;
-  line-height: 1;
-}
-
-.col-md-6 img {
-  display: flex;
-  position: absolute;
-  min-height: 0.1rem;
-  margin-top: 1rem;
-  max-width: 600px;
-  height: auto;
-}
-
-.kontak .contact h1 {
+  padding: 15px 32px;
   text-align: center;
-  font-size: 4rem;
-  color: #d52b1e;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
 
-.kontak .contact img {
-  display: inline-block;
-  position: absolute;
-  max-width: 1100px;
-  min-height: 0.1rem;
-  margin-top: 3rem;
-  right: 12%;
+.main button:hover {
+  background-color: #d52b1e;
 }

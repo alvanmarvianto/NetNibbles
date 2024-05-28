@@ -154,6 +154,9 @@ def checkout(request):
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
+
+    if order.get_cart_total == 0:
+    	return redirect('store')
     
     if request.method == 'POST':
         form = CheckoutForm(request.POST, user=request.user)

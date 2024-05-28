@@ -100,7 +100,7 @@
                             <h5>Rp. {{order.get_cart_total|floatformat:0}}</h5>
                         </div>
                     </div>
-                    <form id="form" method="POST" action="{% url 'orderhistory' %}">
+                    <form id="form" method="POST">
                         {% csrf_token %}
                         <input id="form-button" class="submitbutton" type="submit" onclick="submitFormData()" value="Buat Pesanan">
                     </form>

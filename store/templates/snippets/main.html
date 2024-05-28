@@ -1,9 +1,9 @@
 {% load static %}
             
-            <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+            <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
             
             <nav class="navbar navbar-expand-lg py-3" style="background-color: #fef0db; z-index: 1000;" >
-                <div class="container" >
+                <div class="container">
                     <a class="navbar-brand" style="margin-left:50px" href="{% url 'home' %}"><span class="fw-bolder text-primary"><img class="logos-img" src="{% static 'assets/logo.png' %}" alt="Avatar" /></span></a>
                             
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -15,7 +15,7 @@
                         </ul>
                     </div>
                 </div>
-				
+			
                 
                 {% if request.user.is_authenticated %}
                 <header class="header"> 
@@ -32,3 +32,4 @@
 					</a>
                 {% endif %}
             </nav>
+    

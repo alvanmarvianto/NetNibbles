@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" action="{% url 'product_list'%}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+    <h1>Product List</h1>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }} - {{ product.price }}</li>
+            <a href="{% url 'product_edit' product.pk %}">Edit</a>
+            <a href="{% url 'product_delete' product.pk %}">Delete</a>
+        {% endfor %}
+    </ul>
+</body>
+</html>

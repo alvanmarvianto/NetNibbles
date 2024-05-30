@@ -9,13 +9,28 @@
     <div class="container">
         <h1><img src="{% static 'images/logo.png' %}"></h1>
         <h3>Login Berhasil</h3>
+        {% if user.is_staff %}
+        <p>Anda telah berhasil masuk ke akun Anda. Anda dapat masuk ke list product untuk mengedit product.</p>
+        {% else %}
         <p>Anda telah berhasil masuk ke akun Anda. Anda dapat masuk ke menu untuk mulai berbelanja.</p>
-        <p>Anda akan otomatis redirect ke <a href="{% url 'menu' %}">Menu</a> dalam 5 detik</p>
+        {% endif %}
+        <p>Anda akan otomatis redirect ke 
+            {% if user.is_staff %}
+                <a href="{% url 'product_list' %}">Product List</a>
+            {% else %}
+                <a href="{% url 'menu' %}">Menu</a>
+            {% endif %}
+            dalam 5 detik
+        </p>
     </div>
     <script>
         // JavaScript to redirect after 5 seconds
         setTimeout(function() {
-            window.location.href = "{% url 'menu' %}"; // Ganti 'target_url_name' dengan nama URL yang Anda tuju
+            {% if user.is_staff %}
+                window.location.href = "{% url 'product_list' %}";
+            {% else %}
+                window.location.href = "{% url 'menu' %}";
+            {% endif %}
         }, 5000); // 5000 milliseconds = 5 seconds
     </script>
 </body>

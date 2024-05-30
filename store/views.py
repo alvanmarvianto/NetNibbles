@@ -9,7 +9,10 @@ from .utils import *
 from .forms import *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+def is_staff(user):
+    return user.is_authenticated and user.is_staff
 
 def home(request):
   data = cartData(request)
@@ -154,6 +157,9 @@ def checkout(request):
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
+
+    if order.get_cart_total == 0:
+    	return redirect('store')
     
     if request.method == 'POST':
         form = CheckoutForm(request.POST, user=request.user)
@@ -246,3 +252,35 @@ def orderHistory(request):
 
     context = {'order_history': order_history, "user": user, 'cartItems': cartItems,}
     return render(request, 'store/orderhistory.html', context)
+
+@user_passes_test(is_staff)
+def product_list(request):
+    products = Product.objects.all()
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm()
+
+    return render(request, 'store/product_list.html', {'form': form, 'products': products})
+
+@user_passes_test(is_staff)
+def product_edit(request, pk):
+    product = Product.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'store/product_edit.html', {'form': form})
+
+@user_passes_test(is_staff)
+def product_delete(request, pk):
+    product = Product.objects.get(pk=pk)
+    product.delete()
+    return redirect('product_list')

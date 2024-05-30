@@ -23,7 +23,7 @@ class Product(models.Model):
     )
     name = models.CharField(max_length=200)
     price = models.IntegerField()
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True)
     category = models.CharField(max_length=10, choices=choices_category, default='')
     stock = models.IntegerField(default=0)
 
@@ -40,6 +40,11 @@ class Product(models.Model):
         except:
             url = ''
         return url
+
+    def save(self, *args, **kwargs):
+        if self.stock < 0:
+            self.stock = 0
+        super().save(*args, **kwargs)
 
 class Order(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
@@ -84,6 +89,14 @@ class OrderItem(models.Model):
 	def get_total(self):
 		total = self.product.price * self.quantity
 		return total
+
+	def save(self, *args, **kwargs):
+		existing_order_item = OrderItem.objects.filter(order=self.order, product=self.product).first()
+
+		if existing_order_item:
+			existing_order_item.delete()
+
+		super(OrderItem, self).save(*args, **kwargs)
 
 class CheckoutDetail(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)

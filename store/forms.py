@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
 from django.contrib.auth.models import User
-from .models import Customer
+from .models import Customer, Product
 from django.core.exceptions import ValidationError
 
 class RegisterForm(forms.ModelForm):
@@ -58,3 +58,8 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['first_name', 'last_name', 'phone', 'email']
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'price', 'image', 'category', 'stock']

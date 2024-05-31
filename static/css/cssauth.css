@@ -108,3 +108,15 @@ button:hover {
     background-color: #fff;
     border: 0.2px solid #D52B1E;
 }
+
+
+button.yellow {
+    background-color: #FFC700;
+    color: #000; 
+}
+
+button.yellow:hover {
+    color: #FFC700;
+    background-color: #fff;
+    border: 0.2px solid #FFC700; 
+}

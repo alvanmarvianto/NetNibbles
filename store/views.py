@@ -263,7 +263,7 @@ def product_list(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('menu_admin')
     else:
         form = ProductForm()
 
@@ -294,7 +294,7 @@ def product_edit(request, pk):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('menu_admin')
     else:
         form = ProductForm(instance=product)
     return render(request, 'store/product_edit.html', {'form': form})
@@ -303,4 +303,4 @@ def product_edit(request, pk):
 def product_delete(request, pk):
     product = Product.objects.get(pk=pk)
     product.delete()
-    return redirect('product_list')
+    return redirect('menu_admin')

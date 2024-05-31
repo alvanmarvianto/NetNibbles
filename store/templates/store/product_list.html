@@ -31,11 +31,31 @@
                     <br>
                     <br>
                     <br>
-                    <form method="post" enctype="multipart/form-data" action="{% url 'product_add' %}">
+                    <form method="post" enctype="multipart/form-data"">
                         {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Nama Produk:</label>
+                            {{ form.name }}
+                        </div>
+                        <br><div class="mb-3">
+                            <label for="id_price" class="form-label">Harga:</label><br>
+                            {{ form.price }}
+                        </div>
+                        <br><div class="mb-3">
+                            <label for="id_image" class="form-label">Gambar Produk:</label><br>
+                            {{ form.image }}
+                        </div>
+                        <br><div class="mb-3">
+                            <label for="id_category" class="form-label">Kategori:</label><br>
+                            {{ form.category }}
+                        </div>
+                        <br><div class="mb-3">
+                            <label for="id_stock" class="form-label">Jumlah Stok:</label><br>
+                            {{ form.stock }}
+                        </div>
+                        <button type="submit">Simpan</button>
+
                         
-                        {{ form.as_p }}
-                    <button type="submit">Tambah</button>
                     </form>
                     
                 </div>

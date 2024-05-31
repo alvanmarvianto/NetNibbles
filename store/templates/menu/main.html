@@ -38,9 +38,6 @@
     </div>
     {% if request.user.is_authenticated %}
     <header class="header"> 
-        <a href="{% url 'product_add' %}" class="user-icon">
-        <i class="bi bi-plus"></i>
-    </a>
         <a href="{% url 'user_page' %}" class="nav-link">
             <div class="user-icon" style="background-color: #fef0db;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-6">

@@ -53,9 +53,12 @@
                             <label for="id_stock" class="form-label">Jumlah Stok:</label><br>
                             {{ form.stock }}
                         </div>
-                        <button type="submit">Simpan</button>
-                    <button type="delete">Hapus</button>
+                        <button type="submit" class="yellow yellow:hover">Simpan</button>
                     </form>
+                    <form method="post" action="{% url 'product_delete' product.pk %}">
+                              {% csrf_token %}
+                    <button type="submit"">Hapus</button>
+                    
                     
                 </div>
             </div>

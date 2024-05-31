@@ -297,10 +297,11 @@ def product_edit(request, pk):
             return redirect('menu_admin')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'store/product_edit.html', {'form': form})
+    return render(request, 'store/product_edit.html', {'form': form, 'product': product})
 
 @user_passes_test(is_staff)
 def product_delete(request, pk):
+    products = Product.objects.all()
     product = Product.objects.get(pk=pk)
     product.delete()
     return redirect('menu_admin')

@@ -18,20 +18,15 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href='{% url "home" %}'>Home</a>
+                <a class="nav-link" href='{% url "menu_admin" %}'>Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href='{% url "menu" %}'>Menu</a>
+                <a class="nav-link" href='{% url "menu_admin" %}'>Menu</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href='{% url "orderhistory" %}'>Pemesanan</a>
-            </li>
-        
             <li class="nav-item dropdown">
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href='{% url "home" %}'>Home</a></li>
-                <li><a class="dropdown-item" href='{% url "menu" %}'>Menu</a></li>
-                <li><a class="dropdown-item" href='{% url "orderhistory" %}'>Pemesanan</a></li>
+                <li><a class="dropdown-item" href='{% url "menu_admin" %}'>Home</a></li>
+                <li><a class="dropdown-item" href='{% url "menu_admin" %}'>Menu</a></li>
             </ul>
             </li>
         </ul>

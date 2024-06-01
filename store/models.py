@@ -32,7 +32,10 @@ class Product(models.Model):
 
     def is_available(self):
         return self.stock >= 1
-
+	
+    def is_sold_out(self):
+        return self.stock <= 0
+	
     @property
     def imageURL(self):
         try:

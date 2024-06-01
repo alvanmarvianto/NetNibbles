@@ -142,3 +142,25 @@ button.yellow:hover {
     background-color: #fff;
     border: 0.2px solid #FFC700; 
 }
+
+a.btn.logout-button {
+    border: none;
+    color: #FFF1DC;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    background-color: #D52B1E;
+    padding: 1.5% 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+
+a.btn.logout-button:hover {
+    color: #D52B1E;
+    background-color: #fff;
+    border: 0.2px solid #D52B1E;
+}

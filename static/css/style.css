@@ -8235,15 +8235,15 @@ textarea.form-control-lg {
 }
 
 .fs-7 {
-  font-size: 64px; !important;
+  font-size: 64px !important;
 }
 
 .fs-8 {
-  font-size: 75px; !important;
+  font-size: 75px !important;
 }
 
 .fs-9 {
-  font-size: 50px; !important;
+  font-size: 50px !important;
 }
 
 
@@ -8348,7 +8348,7 @@ textarea.form-control-lg {
 /* rtl:end:remove */
 .text-primary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)); !important;
+  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-secondary {

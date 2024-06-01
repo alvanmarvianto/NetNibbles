@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
 from django.contrib.auth.models import User
-from .models import Customer
+from .models import Customer, Product
 from django.core.exceptions import ValidationError
 
 class RegisterForm(forms.ModelForm):
@@ -58,3 +58,39 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['first_name', 'last_name', 'phone', 'email']
+
+class ProductForm(forms.ModelForm):
+    CATEGORY_CHOICES = [
+        ('Food', 'Food'),
+        ('Drink', 'Drink'),
+        ('Dessert', 'Dessert'),
+    ]
+
+    name = forms.CharField(
+        max_length=100,
+        required=True,
+        label="Nama"
+    )
+    price = forms.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        required=True,
+        label="Harga"
+    )
+    image = forms.ImageField(
+        required=True,
+        label="Gambar Produk"
+    )
+    category = forms.ChoiceField(
+        choices=CATEGORY_CHOICES,
+        required=True,
+        label="Kategori"
+    )
+    stock = forms.IntegerField(
+        required=True,
+        label="Jumlah Stok"
+    )
+    
+    class Meta:
+        model = Product
+        fields = ['name', 'price', 'image', 'category', 'stock']

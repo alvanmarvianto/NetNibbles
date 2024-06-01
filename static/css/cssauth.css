@@ -87,6 +87,28 @@ input:focus {
     outline: none;
 }
 
+button.save-changes {
+    border: none;
+    color: white;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    background-color: #31cd31;
+    padding: 1.5% 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+
+button.save-changes:hover {
+    color: 	#31cd31;
+    background-color: #fff;
+    border: 0.2px solid #31cd31;
+}
+
 button {
     border: none;
     color: #FFF1DC;
@@ -104,6 +126,40 @@ button {
 }
 
 button:hover {
+    color: #D52B1E;
+    background-color: #fff;
+    border: 0.2px solid #D52B1E;
+}
+
+
+button.yellow {
+    background-color: #FFC700;
+    color: #000; 
+}
+
+button.yellow:hover {
+    color: #FFC700;
+    background-color: #fff;
+    border: 0.2px solid #FFC700; 
+}
+
+a.btn.logout-button {
+    border: none;
+    color: #FFF1DC;
+    font-family: 'DM Sans';
+    font-weight: bold;
+    background-color: #D52B1E;
+    padding: 1.5% 30%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+
+a.btn.logout-button:hover {
     color: #D52B1E;
     background-color: #fff;
     border: 0.2px solid #D52B1E;

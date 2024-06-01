@@ -61,67 +61,73 @@
 
 <!-- Bootstrap Code -->
 <nav class="navbar navbar-expand-xl bg-transparent">
-<div class="container-fluid py-5">
-    <a class="navbar-brand" href='{% url "home" %}'>
-        <img src="{% static 'assets/logo.png' %}">
-    </a>
-    
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href='{% url "home" %}'>Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='{% url "menu" %}'>Menu</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href='{% url "orderhistory" %}'>Pemesanan</a>
-            </li>
+    <div class="container-fluid py-5">
+        <a class="navbar-brand" href='{% url "home" %}'>
+            <img src="{% static 'assets/logo.png' %}">
+        </a>
         
-            <li class="nav-item dropdown">
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href='{% url "home" %}'>Home</a></li>
-                <li><a class="dropdown-item" href='{% url "menu" %}'>Menu</a></li>
-                <li><a class="dropdown-item" href='{% url "orderhistory" %}'>Pemesanan</a></li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url "home" %}'>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url "menu" %}'>Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='{% url "orderhistory" %}'>Pemesanan</a>
+                </li>
+            
+                <li class="nav-item dropdown">
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href='{% url "home" %}'>Home</a></li>
+                        <li><a class="dropdown-item" href='{% url "menu" %}'>Menu</a></li>
+                        <li><a class="dropdown-item" href='{% url "orderhistory" %}'>Pemesanan</a></li>
+                    </ul>
+                </li>
             </ul>
-            </li>
-        </ul>
+        </div>
+        
+        {% if request.user.is_authenticated %}
+        <header class="header"> 
+            <a href="{% url 'checkout' %}">
+                <img class="cart-icon" src="{% static 'assets/cart.png' %}" alt="Cart">
+            </a>
+            <p id="cart-total">{{ cartItems }}</p>
+            <a href="{% url 'user_page' %}" class="nav-link">
+                <div class="user-icon" style="background-color: #fef0db;">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </div>
+            </a>
+            {% if request.user.is_superuser %}
+            <a href="{% url 'menu_admin' %}" class="nav-link a-login" style="margin-left: 30px;">
+                <button>Admin</button>
+            </a>
+            {% endif %}
+        </header>
+        {% else %}
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item a-login">
+                    <a href="{% url 'login' %}">
+                        <button>Login</button>
+                    </a>
+                </li>
+                <br>
+                <br>
+                <li class="nav-item a-signup">
+                    <a href="{% url 'register' %}">
+                        <button>Daftar</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </div>
-    {% if request.user.is_authenticated %}
-    <header class="header"> 
-        <a href="{% url 'checkout' %}">
-            <img class="cart-icon" src="{% static 'assets/cart.png' %}" alt="Cart">
-        </a>
-        <p id="cart-total">{{ cartItems }}</p>
-        <a href="{% url 'user_page' %}" class="nav-link">
-            <div class="user-icon" style="background-color: #fef0db;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                </svg>
-            </div>
-        </a>
-    </header>
-    {% else %}
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item a-login">
-                <a href="{% url 'login' %}">
-                    <button>Login</button>
-                </a>
-            </li>
-            <br>
-            <br>
-            <li class="nav-item a-signup">
-                <a href="{% url 'register' %}">
-                    <button>Daftar</button>
-                </a>
-            </li>
-        </ul>
-    </div>
-    {% endif %}
-    </div>
-</nav>
+    </nav>
+    

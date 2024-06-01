@@ -177,35 +177,40 @@ def checkout(request):
 
 
 def updateItem(request):
-	data = json.loads(request.body)
-	productId = data['productId']
-	action = data['action']
-	print('Action:', action)
-	print('Product:', productId)
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+    print('Action:', action)
+    print('Product:', productId)
 
-	customer = request.user.customer
-	product = Product.objects.get(id=productId)
-	order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    customer = request.user.customer
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
 
-	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
-                
-	if action == 'add':
-		if orderItem.is_available:
-			orderItem.quantity = (orderItem.quantity + 1)
-		else:
-			return JsonResponse('Produk tidak tersedia', safe=False)
-	elif action == 'remove':
-		if orderItem.quantity > 0:
-			orderItem.quantity = (orderItem.quantity - 1)
-		else:
-			return JsonResponse('Produk tidak tersedia', safe=False)
-	
-	orderItem.save()
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
-	if orderItem.quantity <= 0:
-		orderItem.delete()
+    if action == 'add':
+        if product.stock > 0:  # Ensure there is stock available
+            orderItem.quantity = (orderItem.quantity + 1)
+            product.stock = (product.stock - 1)  # Decrease the product stock
+            product.save()
+        else:
+            return JsonResponse('Produk tidak tersedia', safe=False)
+    elif action == 'remove':
+        if orderItem.quantity > 0:
+            orderItem.quantity = (orderItem.quantity - 1)
+            product.stock = (product.stock + 1)  # Increase the product stock back
+            product.save()
+        else:
+            return JsonResponse('Produk tidak tersedia', safe=False)
 
-	return JsonResponse('Item was added', safe=False)
+    orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item was added', safe=False)
+
 
 @login_required
 def processOrder(request):
@@ -277,6 +282,10 @@ def menu_admin(request):
     menu1 = Product.objects.filter(Q(category__iexact='Food'))
     menu2 = Product.objects.filter(Q(category__iexact='Drink'))
     menu3 = Product.objects.filter(Q(category__iexact='Dessert'))
+    
+    print(menu1) 
+    print(menu2)  
+    print(menu3)
     
     context = { 
         "menu1": menu1, 

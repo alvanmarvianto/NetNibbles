@@ -85,7 +85,7 @@
                     <div class="row mb-5 align-items-center">
                         <div class="col-xxl-5">
                             
-                            <div style="padding-left:102px; text-align: left;">
+                            <div style="text-align: left;">
                                 <h1><span style="font-size: 75px; color:#d52b1e; padding-right: 130px; font-weight: bold;">NetNibbles<br>Admin<br></span></h1>
                                 <p><span style="font-size: 24px; color: black; padding-right: 150px; "> <br>NetNibbles menghadirkan dan menjamin kelezatan kepada pelanggan tercinta semua.<br><br></span></p>
                                 <div class="d-grid gap-3 justify-content-sm-center justify-content-xxl-start mb-3">
@@ -95,7 +95,7 @@
                         </div>
                         <div class="col-xxl-7" style="margin-bottom:10rem;">
                             <div">
-                                    <img class="menu-icon" style="padding-left: 0px; margin-right:0px;" src="{% static 'assets/menupage2.png' %}" alt="Avatar" />
+                                    <img class="menu-icon" style="padding-left: 0px; margin-right:0px;" src="{% static 'assets/menupage3.png' %}" alt="Avatar" />
                             </div>
                         </div>              
       </header>
@@ -111,7 +111,7 @@
                 
                 <div class="menu-container" style="margin-bottom:10rem;">
                     {% for menu in menu1 %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}<br><br><a href="{% url 'product_edit' menu.pk %}" class="btn btn-outline-secondary add-btn update-cart">Edit Produk</a></span></div>
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br><h4>{{ menu.name }}</h4><p>Rp. {{ menu.price }}</p><br><a href="{% url 'product_edit' menu.pk %}" class="btn btn-outline-secondary add-btn update-cart">Edit Produk</a></span></div>
                     {% endfor %}
                     
               </div>
@@ -124,7 +124,7 @@
                 
                 <div class="menu-container" style="margin-bottom:10rem;">
                     {% for menu in menu2 %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}<br><br><a href="{% url 'product_edit' menu.pk %}" class="btn btn-outline-secondary add-btn update-cart">Edit Produk</a></span></div>
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br><h4>{{ menu.name }}</h4><p>Rp. {{ menu.price }}</p><br><a href="{% url 'product_edit' menu.pk %}" class="btn btn-outline-secondary add-btn update-cart">Edit Produk</a></span></div>
                     {% endfor %}
                     
               </div>
@@ -137,7 +137,7 @@
                 
                 <div class="menu-container">
                     {% for menu in menu3 %}
-                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br>{{ menu.name }}<br>Rp{{ menu.price }}<br><br><a href="{% url 'product_edit' menu.pk %}" class="btn btn-outline-secondary add-btn update-cart">Edit Produk</a></span></div>
+                    <div class="menu-item"><img style="width: 175px; height: 171px;" src="{{ menu.image.url }}" alt="{{ menu.name }}"><span style="font-size:16px; font-weight:semibold;"><br><h4>{{ menu.name }}</h4><p>Rp. {{ menu.price }}</p><br><a href="{% url 'product_edit' menu.pk %}" class="btn btn-outline-secondary add-btn update-cart">Edit Produk</a></span></div>
                     {% endfor %}
                     
               </div>

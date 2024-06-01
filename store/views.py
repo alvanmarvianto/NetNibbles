@@ -44,6 +44,8 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 auth_login(request, user)
+                if user.is_staff:
+                    return redirect('menu_admin')
                 return redirect('success')
     else:
         form = AuthenticationForm()
@@ -261,12 +263,30 @@ def product_list(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('menu_admin')
     else:
         form = ProductForm()
 
     return render(request, 'store/product_list.html', {'form': form, 'products': products})
 
+@user_passes_test(is_staff)
+def menu_admin(request):
+    template_name = 'store/menu_admin.html'
+
+    products = Product.objects.all()
+    menu1 = Product.objects.filter(Q(category__iexact='Food'))
+    menu2 = Product.objects.filter(Q(category__iexact='Drink'))
+    menu3 = Product.objects.filter(Q(category__iexact='Dessert'))
+    
+    context = { 
+        "menu1": menu1, 
+        "menu2": menu2, 
+        "menu3": menu3, 
+        'products': products, 
+    }
+    
+    return render(request, template_name, context)
+ 
 @user_passes_test(is_staff)
 def product_edit(request, pk):
     product = Product.objects.get(pk=pk)
@@ -274,13 +294,14 @@ def product_edit(request, pk):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('menu_admin')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'store/product_edit.html', {'form': form})
+    return render(request, 'store/product_edit.html', {'form': form, 'product': product})
 
 @user_passes_test(is_staff)
 def product_delete(request, pk):
+    products = Product.objects.all()
     product = Product.objects.get(pk=pk)
     product.delete()
-    return redirect('product_list')
+    return redirect('menu_admin')

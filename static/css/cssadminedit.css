@@ -56,57 +56,43 @@ input[type=text] {
     border-bottom: 2px solid #000000;
 }
 
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 4px 0;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid #000000;
+select {
+    width: 200px;  /* Adjust as needed */
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.2;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="#000" d="M0 0l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
 }
 
-input[type=username] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 4px 0;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid #000000;
-}
-
-input[type=email] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 4px 0;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid #000000;
-}
-
-input:focus {
+/* Adjust padding to prevent overlap with arrow */
+select:focus {
+    border-color: #666;
     outline: none;
 }
 
-button.save-changes {
-    border: none;
-    color: white;
-    font-family: 'DM Sans';
-    font-weight: bold;
-    background-color: #31cd31;
-    padding: 1.5% 30%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    transition-duration: 0.4s;
+input {
     width: 100%;
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #000000;
 }
 
-button.save-changes:hover {
-    color: 	#31cd31;
-    background-color: #fff;
-    border: 0.2px solid #31cd31;
+
+input:focus {
+    outline: none;
 }
 
 button {
